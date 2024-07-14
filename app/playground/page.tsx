@@ -1,4 +1,5 @@
 import PageHeader from "@/components/page-header";
+import TransactionItem from "@/components/transaction-item";
 import Trend from "@/components/trend";
 
 export default function Page() {
@@ -22,6 +23,25 @@ export default function Page() {
           <Trend type="Expense" amount={12000} prevAmount={10000} />
           <Trend type="Investment" amount={7000} prevAmount={11100} />
           <Trend type="Saving" amount={500} prevAmount={950} />
+        </div>
+      </div>
+
+      <div>
+        <h2 className="mb-4 text-lg font-mono">Transaction Item</h2>
+        <hr className="mb-4 border-gray-200 dark:border-gray-800" />
+        <div className="">
+          <TransactionItem
+            type="Income"
+            category="Salary"
+            description="sweldo ko"
+            amount={1000}
+          />
+          <TransactionItem
+            type="Expense"
+            category="Food"
+            description="Going out"
+            amount={29}
+          />
         </div>
       </div>
     </main>
