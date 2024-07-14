@@ -29,18 +29,30 @@ export default function Page() {
       <div>
         <h2 className="mb-4 text-lg font-mono">Transaction Item</h2>
         <hr className="mb-4 border-gray-200 dark:border-gray-800" />
-        <div className="">
+        <div className="space-y-4">
           <TransactionItem
             type="Income"
             category="Salary"
-            description="sweldo ko"
+            description="Paycheck"
             amount={1000}
           />
           <TransactionItem
             type="Expense"
             category="Food"
-            description="Going out"
-            amount={29}
+            description="Going out to eat"
+            amount={50}
+          />
+          <TransactionItem
+            type="Saving"
+            category=""
+            description="For Children"
+            amount={500}
+          />
+          <TransactionItem
+            type="Investment"
+            category="Stocks"
+            description="In Micrsoft"
+            amount={2000}
           />
         </div>
       </div>
