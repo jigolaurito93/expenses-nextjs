@@ -1,5 +1,6 @@
 import PageHeader from "@/components/page-header";
 import TransactionItem from "@/components/transaction-item";
+import TransactionSummaryItem from "@/components/transaction-summary-item";
 import Trend from "@/components/trend";
 
 export default function Page() {
@@ -30,6 +31,41 @@ export default function Page() {
         <h2 className="mb-4 text-lg font-mono">Transaction Item</h2>
         <hr className="mb-4 border-gray-200 dark:border-gray-800" />
         <div className="space-y-4">
+          <TransactionItem
+            type="Income"
+            category="Salary"
+            description="Paycheck"
+            amount={1000}
+          />
+          <TransactionItem
+            type="Expense"
+            category="Food"
+            description="Going out to eat"
+            amount={50}
+          />
+          <TransactionItem
+            type="Saving"
+            category=""
+            description="For Children"
+            amount={500}
+          />
+          <TransactionItem
+            type="Investment"
+            category="Stocks"
+            description="In Microsoft"
+            amount={2000}
+          />
+        </div>
+      </div>
+
+      <div>
+        <h2 className="mb-4 text-lg font-mono">
+          Transaction + Transaction Summary
+        </h2>
+        <hr className="mb-4 border-gray-200 dark:border-gray-800" />
+        <div className="space-y-4">
+          <TransactionSummaryItem date="2024-07-14" amount={4000} />
+          <hr className="mb-4 border-gray-200 dark:border-gray-800" />
           <TransactionItem
             type="Income"
             category="Salary"
