@@ -1,3 +1,4 @@
+import TransactionForm from "@/components/transaction-form";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,7 +6,12 @@ export const metadata: Metadata = {
 };
 
 const AddTransaction = () => {
-  return <div className="text-4xl font-semibold my-8">Add Transaction</div>;
+  return (
+    <div className="h-screen">
+      <div className="text-4xl font-semibold my-8">Add Transaction</div>
+      <TransactionForm />
+    </div>
+  );
 };
 
 export default AddTransaction;
