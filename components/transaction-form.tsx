@@ -2,6 +2,8 @@
 
 import { categories, types } from "@/app/data/consts";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { TransactionSchema } from "@/app/data/validation";
 
 const TransactionForm = () => {
   const {
@@ -9,7 +11,10 @@ const TransactionForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onTouched",
+    resolver: zodResolver ,
+  });
 
   const onSubmit = (data: any) => console.log(data);
   return (
