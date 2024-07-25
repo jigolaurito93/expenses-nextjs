@@ -1,11 +1,14 @@
+import Input from "@/components/Input";
+import Label from "@/components/Label";
 import PageHeader from "@/components/page-header";
+import Select from "@/components/Select";
 import TransactionItem from "@/components/transaction-item";
 import TransactionSummaryItem from "@/components/transaction-summary-item";
 import Trend from "@/components/trend";
 
 export default function Page() {
   return (
-    <main className="space-y-8">
+    <main className="space-y-8 pb-20">
       <h1 className="text-4xl mt-8">Playground</h1>
 
       <div>
@@ -98,40 +101,23 @@ export default function Page() {
         <hr className="mb-4 border-gray-200 dark:border-gray-800" />
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label
-              htmlFor=""
-              className="text-gray-700 dark:text-gray-300 block mb-1"
-            >
-              Your name
-            </label>
-            <input
-              type="text"
-              placeholder="Type something in here.."
-              className="w-full rounded-md shadow-sm border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950"
-            />
+            <Label>Your name</Label>
+            <Input type="text" placeholder="Your name here.." />
           </div>
           <div>
-            <label
-              htmlFor=""
-              className="text-gray-700 dark:text-gray-300 block mb-1"
-            >
-              City
-            </label>
-            <select className="w-full rounded-md shadow-sm border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950">
+            <Label>City</Label>
+            <Select>
               <option>Paranaque</option>
               <option>Makati</option>
               <option>Muntinlupa</option>
-            </select>
+            </Select>
           </div>
 
           <div className="flex items-center">
-            <input
-              type="checkbox"
-              className="rounded border-gray-300 text-gray-700 bg-white dark:bg-gray-950 dark:text-gray-500 shadow-sm"
-            />
-            <label htmlFor="" className="text-gray-700 dark:text-gray-300 ml-2">
+            <Input type="checkbox" id="city" />
+            <Label htmlFor="city" className="ml-1">
               City
-            </label>
+            </Label>
           </div>
         </div>
       </div>

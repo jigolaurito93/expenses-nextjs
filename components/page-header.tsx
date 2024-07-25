@@ -1,4 +1,7 @@
+"use client";
 import Link from "next/link";
+import DarkModeToggle from "./Dark-Mode-Toggle";
+import useServerDarkMode from "@/app/hooks/use-server-dark-mode";
 
 interface PageHeaderProps {
   className: string;
@@ -15,7 +18,7 @@ export default function PageHeader({ className }: PageHeaderProps) {
       </Link>
 
       <div className="flex items-center space-x-4">
-        <div>Mode Toggle</div>
+        <DarkModeToggle />
         <div>User Dropdown</div>
       </div>
     </header>

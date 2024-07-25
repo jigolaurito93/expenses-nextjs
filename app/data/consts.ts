@@ -1,5 +1,4 @@
-export const types = ["Income", "Expense", "Investment", "Saving"];
-
+export const types = ["Income", "Expense", "Investment", "Saving"] as const;
 export const categories = [
   "Housing",
   "Transport",
@@ -7,4 +6,4 @@ export const categories = [
   "Food",
   "Education",
   "Other",
-];
+] as const;

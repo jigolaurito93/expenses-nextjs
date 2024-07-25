@@ -9,59 +9,89 @@ const TransactionForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     mode: "onTouched",
-    resolver: zodResolver ,
+    resolver: zodResolver(TransactionSchema),
   });
 
   const onSubmit = (data: any) => console.log(data);
+
   return (
     <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-        <div className="flex flex-col gap-2">
-          <label htmlFor="" className="ml-1">
+        <div className="flex flex-col gap-2 h-28">
+          <label htmlFor="type" className="ml-1">
             Type
           </label>
           <select {...register("type")} className="dark-input rounded-md">
-            {types.map((type) => {
-              return <option className="dark-input">{type}</option>;
-            })}
+            {types.map((type, index) => (
+              <option key={index} className="dark-input">
+                {type}
+              </option>
+            ))}
           </select>
+          {errors.type?.message && (
+            <div className="text-red-500">{String(errors.type.message)}</div>
+          )}
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="" className="ml-1">
+        <div className="flex flex-col gap-2 h-28">
+          <label htmlFor="category" className="ml-1">
             Category
           </label>
           <select {...register("category")} className="dark-input rounded-md">
-            {categories.map((category) => {
-              return <option className=" dark-input">{category}</option>;
-            })}
+            {categories.map((category, index) => (
+              <option key={index} className="dark-input">
+                {category}
+              </option>
+            ))}
           </select>
+          {errors.category?.message && (
+            <div className="text-red-500">
+              {String(errors.category.message)}
+            </div>
+          )}
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="" className="ml-1">
+        <div className="flex flex-col gap-2 h-28">
+          <label htmlFor="create_at" className="ml-1">
             Date
           </label>
-          <input {...register("date")} className="dark-input" />
+          <input
+            {...register("create_at")}
+            className="dark-input"
+            placeholder="MM-DD-YYYY"
+          />
+          {errors.create_at?.message && (
+            <div className="text-red-500">
+              {String(errors.create_at.message)}
+            </div>
+          )}
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="" className="ml-1">
+        <div className="flex flex-col gap-2 h-28">
+          <label htmlFor="amount" className="ml-1">
             Amount
           </label>
-          <input {...register("amount")} type="number" className="dark-input" />
+          <input {...register("amount")} className="dark-input" />
+          {errors.amount?.message && (
+            <div className="text-red-500">{String(errors.amount.message)}</div>
+          )}
         </div>
 
-        <div className="col-span-2 flex flex-col gap-2">
-          <label htmlFor="" className="ml-1">
+        <div className="col-span-2 flex flex-col gap-2 h-28">
+          <label htmlFor="description" className="ml-1">
             Description
           </label>
           <input {...register("description")} className="dark-input" />
+          {errors.description?.message && (
+            <div className="text-red-500">
+              {String(errors.description.message)}
+            </div>
+          )}
         </div>
+
         <div className="flex justify-end col-span-2">
           <button type="submit" className="button-white">
             Save

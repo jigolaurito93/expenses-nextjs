@@ -16,6 +16,7 @@
     "lucide-react": "^0.401.0",
     "next": "14.2.4",
     "react": "^18",
+    "react-cookie": "^7.2.0",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
     "zod": "^3.23.8"
