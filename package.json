@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server --watch db.json --port 3003"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.2",
     "@tailwindcss/forms": "^0.5.7",
+    "json-server": "1.0.0-beta.1",
     "lucide-react": "^0.401.0",
     "next": "14.2.4",
     "react": "^18",

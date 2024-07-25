@@ -6,8 +6,10 @@ const DarkModeToggle = ({ defaultmode = "dark" }) => {
   const { theme, toggleTheme } = useDarkMode(defaultmode);
   return (
     <Button variant="ghost" size="sm" onClick={toggleTheme}>
-      {theme === "light" && <Moon className="w-6 h-6" />}
-      {theme === "dark" && <Sun className="w-6 h-6" />}
+      {theme === "light" && <Moon className="w-10 h-8 p-2" />}
+      {theme === "dark" && (
+        <Sun className="w-10 h-8 text-white bg-black rounded p-2" />
+      )}
     </Button>
   );
 };
