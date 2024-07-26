@@ -15,7 +15,10 @@ const TransactionForm = () => {
     resolver: zodResolver(TransactionSchema),
   });
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    console.log(data);
+    console.log(process.env.API_URL);
+  };
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
