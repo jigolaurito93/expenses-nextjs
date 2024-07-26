@@ -32,5 +32,11 @@
       "category": "Housing",
       "created_at": "2024-05-10T23:00:00"
     }
+  ],
+  "trends": [
+    { "id": "Income", "amount": 4000, "prevAmount": 2000 },
+    { "id": "Expense", "amount": 6000, "prevAmount": 3400 },
+    { "id": "Saving", "amount": 3000, "prevAmount": 2500 },
+    { "id": "Investment", "amount": 1000, "prevAmount": 500 }
   ]
 }

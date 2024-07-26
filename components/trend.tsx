@@ -3,7 +3,7 @@ import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
 import { format } from "path";
 import React, { useMemo } from "react";
 
-interface TrendProps {
+export interface TrendProps {
   type: "Income" | "Expense" | "Investment" | "Saving";
   amount: number;
   prevAmount: number;
