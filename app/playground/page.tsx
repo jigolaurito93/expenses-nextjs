@@ -2,6 +2,8 @@ import Input from "@/components/Input";
 import Label from "@/components/Label";
 import PageHeader from "@/components/page-header";
 import Select from "@/components/Select";
+import Separator from "@/components/separator";
+import Skeleton from "@/components/skeleton";
 import TransactionItem from "@/components/transaction-item";
 import TransactionSummaryItem from "@/components/transaction-summary-item";
 import Trend from "@/components/trend";
@@ -13,7 +15,7 @@ export default function Page() {
 
       <div>
         <h2 className="mb-4 text-lg font-mono">PageHeader</h2>
-        <hr className="mb-4 border-gray-200 dark:border-gray-800" />
+        <Separator />
         <div>
           <PageHeader className="mb-2" />
         </div>
@@ -21,7 +23,7 @@ export default function Page() {
 
       <div>
         <h2 className="mb-4 text-lg font-mono">Trend</h2>
-        <hr className="mb-4 border-gray-200 dark:border-gray-800" />
+        <Separator />
         <div className="flex space-x-4">
           <Trend type="Income" amount={1000} prevAmount={900} />
           <Trend type="Expense" amount={12000} prevAmount={10000} />
@@ -32,7 +34,7 @@ export default function Page() {
 
       <div>
         <h2 className="mb-4 text-lg font-mono">Transaction Item</h2>
-        <hr className="mb-4 border-gray-200 dark:border-gray-800" />
+        <Separator />
         <div className="space-y-4">
           <TransactionItem
             type="Income"
@@ -65,7 +67,7 @@ export default function Page() {
         <h2 className="mb-4 text-lg font-mono">
           Transaction + Transaction Summary
         </h2>
-        <hr className="mb-4 border-gray-200 dark:border-gray-800" />
+        <Separator />
         <div className="space-y-4">
           <TransactionSummaryItem date="2024-07-14" amount={4000} />
           <hr className="mb-4 border-gray-200 dark:border-gray-800" />
@@ -98,7 +100,7 @@ export default function Page() {
 
       <div>
         <h2 className="mb-4 text-lg font-mono">Forms</h2>
-        <hr className="mb-4 border-gray-200 dark:border-gray-800" />
+        <Separator />
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label>Your name</Label>
@@ -118,6 +120,23 @@ export default function Page() {
             <Label htmlFor="city" className="ml-1">
               City
             </Label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 className="mb-4 text-lg font-mono">Loading Skeleton</h2>
+        <Separator />
+        <div className="space-y-8">
+          <div className="flex space-x-4">
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </div>
+          <div className="space-y-4">
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
           </div>
         </div>
       </div>

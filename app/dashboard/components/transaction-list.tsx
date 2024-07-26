@@ -1,32 +1,55 @@
+import Separator from "@/components/separator";
 import TransactionItem from "@/components/transaction-item";
+import TransactionSummaryItem from "@/components/transaction-summary-item";
+
+interface TransactionProps {
+  id: number;
+  type: string;
+  category: string;
+  description: string;
+  amount: number;
+  created_at: string;
+}
+const groupAndSumTransactionsByDate = (transactions: TransactionProps[]) => {
+  const grouped: {
+    [key: string]: { transactions: TransactionProps[]; amount: number };
+  } = {};
+
+  for (const transaction of transactions) {
+    const date = transaction.created_at.split("T")[0];
+    if (!grouped[date]) {
+      grouped[date] = { transactions: [], amount: 0 };
+    }
+    grouped[date].transactions.push(transaction);
+    const amount =
+      transaction.type === "Expense" ? -transaction.amount : transaction.amount;
+    grouped[date].amount += amount;
+  }
+  return grouped;
+};
 
 export default async function TransactionList() {
-  interface TransactionProps {
-    type: string;
-    category: string;
-    description: string;
-    amount: number;
-  }
-
   const response = await fetch("http://localhost:3003/transactions");
   const transactions = await response.json();
-  console.log(transactions);
 
+  const grouped = groupAndSumTransactionsByDate(transactions);
   return (
-    <section className="space-y-4">
-      {transactions.map((transaction: TransactionProps) => {
-        const { type, category, description, amount } = transaction;
+    <div className="space-y-8">
+      {Object.entries(grouped).map(([date, { transactions, amount }]) => {
         return (
-          <div>
-            <TransactionItem
-              type={type}
-              category={category}
-              description={description}
-              amount={amount}
-            />
+          <div key={date}>
+            <TransactionSummaryItem date={date} amount={amount} />
+            <Separator />
+            <section className="space-y-4">
+              {transactions.map((transaction) => (
+                <div key={transaction.id}>
+                  <TransactionItem {...transaction} />
+                </div>
+              ))}
+            </section>
           </div>
         );
       })}
-    </section>
+    </div>
   );
 }
