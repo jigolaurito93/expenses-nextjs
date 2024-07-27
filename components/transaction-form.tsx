@@ -4,6 +4,8 @@ import { categories, types } from "@/app/data/consts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TransactionSchema } from "@/app/data/validation";
+import { useState } from "react";
+import Button from "./Button";
 
 const TransactionForm = () => {
   const {
@@ -15,9 +17,10 @@ const TransactionForm = () => {
     resolver: zodResolver(TransactionSchema),
   });
 
+  const [isSaving, setIsSaving] = useState(false);
+
   const onSubmit = (data: any) => {
-    console.log(data);
-    console.log(process.env.API_URL);
+    setIsSaving(true);
   };
 
   return (
@@ -96,9 +99,9 @@ const TransactionForm = () => {
         </div>
 
         <div className="flex justify-end col-span-2">
-          <button type="submit" className="button-white">
+          <Button type="submit" disabled={isSaving} size="lg">
             Save
-          </button>
+          </Button>
         </div>
       </div>
     </form>

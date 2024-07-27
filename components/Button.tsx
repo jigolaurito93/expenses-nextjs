@@ -1,4 +1,5 @@
 import { variants, sizes } from "@/lib/variants";
+import { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps {
   variant?: keyof typeof variants;
@@ -6,19 +7,27 @@ interface ButtonProps {
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
+  type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  disabled?: boolean;
 }
 
 export default function Button({
-  variant = "default",
-  size = "base",
-  className = "",
+  variant,
+  size,
+  className,
   children,
   onClick,
+  disabled,
+  type,
 }: ButtonProps): JSX.Element {
   return (
     <button
+      disabled={disabled}
+      type={type}
       onClick={onClick}
-      className={`${variants[variant]} ${sizes[size]} ${className}`}
+      className={`${variant ? variants[variant] : variants["default"]} ${
+        size ? sizes[size] : sizes["base"]
+      } ${className}`}
     >
       {children}
     </button>

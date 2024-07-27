@@ -1,3 +1,5 @@
+"use-client";
+
 import useDarkMode from "@/app/hooks/use-dark-mode";
 import Button from "./Button";
 import { Moon, Sun } from "lucide-react";
