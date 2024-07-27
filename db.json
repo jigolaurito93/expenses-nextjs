@@ -39,6 +39,14 @@
       "description": "pop",
       "created_at": "1993-06-21T00:00:00",
       "id": 5
+    },
+    {
+      "type": "Income",
+      "category": "Housing",
+      "amount": 900,
+      "description": "onepupty",
+      "created_at": "1993-06-21T00:00:00",
+      "id": 6
     }
   ],
   "trends": [

@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TransactionSchema } from "@/app/data/validation";
 import { useState } from "react";
 import Button from "./Button";
+import { useRouter } from "next/navigation";
+import { PurgeTransactionListCache } from "@/lib/actions";
 
 const TransactionForm = () => {
   const {
@@ -17,6 +19,8 @@ const TransactionForm = () => {
     resolver: zodResolver(TransactionSchema),
   });
 
+  const router = useRouter();
+
   const [isSaving, setIsSaving] = useState(false);
 
   const onSubmit = async (data: any) => {
@@ -27,9 +31,15 @@ const TransactionForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data, created_at: `${data.created_at}T00:00:00` }),
+        body: JSON.stringify({
+          ...data,
+          created_at: `${data.created_at}T00:00:00`,
+        }),
       });
+      await PurgeTransactionListCache();
+      router.push("/dashboard");
     } finally {
+      setIsSaving(false);
     }
   };
 
