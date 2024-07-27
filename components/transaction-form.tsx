@@ -19,8 +19,18 @@ const TransactionForm = () => {
 
   const [isSaving, setIsSaving] = useState(false);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     setIsSaving(true);
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, created_at: `${data.created_at}T00:00:00` }),
+      });
+    } finally {
+    }
   };
 
   return (
@@ -61,17 +71,17 @@ const TransactionForm = () => {
         </div>
 
         <div className="flex flex-col gap-2 h-28">
-          <label htmlFor="create_at" className="ml-1">
+          <label htmlFor="created_at" className="ml-1">
             Date
           </label>
           <input
-            {...register("create_at")}
+            {...register("created_at")}
             className="dark-input"
             placeholder="MM-DD-YYYY"
           />
-          {errors.create_at?.message && (
+          {errors.created_at?.message && (
             <div className="text-red-500">
-              {String(errors.create_at.message)}
+              {String(errors.created_at.message)}
             </div>
           )}
         </div>
