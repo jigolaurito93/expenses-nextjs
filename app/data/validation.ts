@@ -17,3 +17,5 @@ export const TransactionSchema = z.object({
     }
   ),
 });
+
+export type FormFieldTransaction = z.infer<typeof TransactionSchema>;

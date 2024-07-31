@@ -3,18 +3,19 @@
 import { categories, types } from "@/app/data/consts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TransactionSchema } from "@/app/data/validation";
+import { FormFieldTransaction, TransactionSchema } from "@/app/data/validation";
 import { useState } from "react";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
 import { PurgeTransactionListCache } from "@/lib/actions";
+import FormError from "./form-error";
 
 const TransactionForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormFieldTransaction>({
     mode: "onTouched",
     resolver: zodResolver(TransactionSchema),
   });
@@ -57,9 +58,7 @@ const TransactionForm = () => {
               </option>
             ))}
           </select>
-          {errors.type?.message && (
-            <div className="text-red-500">{String(errors.type.message)}</div>
-          )}
+          <FormError error={errors.type} />
         </div>
 
         <div className="flex flex-col gap-2 h-28">
@@ -73,11 +72,7 @@ const TransactionForm = () => {
               </option>
             ))}
           </select>
-          {errors.category?.message && (
-            <div className="text-red-500">
-              {String(errors.category.message)}
-            </div>
-          )}
+          <FormError error={errors.category} />
         </div>
 
         <div className="flex flex-col gap-2 h-28">
@@ -89,11 +84,7 @@ const TransactionForm = () => {
             className="dark-input"
             placeholder="MM-DD-YYYY"
           />
-          {errors.created_at?.message && (
-            <div className="text-red-500">
-              {String(errors.created_at.message)}
-            </div>
-          )}
+          <FormError error={errors.created_at} />
         </div>
 
         <div className="flex flex-col gap-2 h-28">
@@ -101,9 +92,7 @@ const TransactionForm = () => {
             Amount
           </label>
           <input {...register("amount")} className="dark-input" />
-          {errors.amount?.message && (
-            <div className="text-red-500">{String(errors.amount.message)}</div>
-          )}
+          <FormError error={errors.amount} />
         </div>
 
         <div className="col-span-2 flex flex-col gap-2 h-28">
@@ -111,11 +100,7 @@ const TransactionForm = () => {
             Description
           </label>
           <input {...register("description")} className="dark-input" />
-          {errors.description?.message && (
-            <div className="text-red-500">
-              {String(errors.description.message)}
-            </div>
-          )}
+          <FormError error={errors.description} />
         </div>
 
         <div className="flex justify-end col-span-2">
