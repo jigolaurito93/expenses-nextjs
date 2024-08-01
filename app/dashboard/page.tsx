@@ -8,8 +8,6 @@ import { createClient } from "@/lib/supabase/server";
 const Dashboard = async () => {
   const client = createClient();
 
-  console.log(await client.from("transactions").select());
-
   return (
     <div>
       <section className="mb-8 grid grid-cols-2 lg:grid-cols-4 gap-8">

@@ -7,7 +7,7 @@ import { FormFieldTransaction, TransactionSchema } from "@/app/data/validation";
 import { useState } from "react";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
-import { PurgeTransactionListCache } from "@/lib/actions";
+import { createTransaction, PurgeTransactionListCache } from "@/lib/actions";
 import FormError from "./form-error";
 
 const TransactionForm = () => {
@@ -24,20 +24,10 @@ const TransactionForm = () => {
 
   const [isSaving, setIsSaving] = useState(false);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: {}) => {
     setIsSaving(true);
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          created_at: `${data.created_at}T00:00:00`,
-        }),
-      });
-      await PurgeTransactionListCache();
+      createTransaction(data);
       router.push("/dashboard");
     } finally {
       setIsSaving(false);
