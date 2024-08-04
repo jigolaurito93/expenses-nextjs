@@ -23,12 +23,16 @@ const TransactionForm = () => {
   const router = useRouter();
 
   const [isSaving, setIsSaving] = useState(false);
+  const [lastError, setLastError] = useState<string | undefined>(undefined);
 
-  const onSubmit = async (data: {}) => {
+  const onSubmit = async (data: FormFieldTransaction) => {
     setIsSaving(true);
+    setLastError(undefined);
     try {
-      createTransaction(data);
+      await createTransaction(data);
       router.push("/dashboard");
+    } catch (error) {
+      setLastError((error as Error).message);
     } finally {
       setIsSaving(false);
     }
@@ -94,6 +98,7 @@ const TransactionForm = () => {
         </div>
 
         <div className="flex justify-end col-span-2">
+          {lastError && <div className="text-red-500">{lastError}</div>}
           <Button type="submit" disabled={isSaving} size="lg">
             Save
           </Button>

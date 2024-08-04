@@ -7,8 +7,8 @@ export async function PurgeTransactionListCache() {
   revalidateTag("transaction-list");
 }
 
-export async function createTransaction(formData) {
-  console.log("formData", formData);
+export async function createTransaction(formData: {}) {
+  throw new Error("Error thrown on purpose");
 
   const { error } = await createClient().from("transactions").insert(formData);
 }
